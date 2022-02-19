@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misskey
+spec:
+  selector:
+    matchLabels:
+      app: misskey
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: misskey
+    spec:
+      containers:
+        - name: misskey
+          image: okteto.dev/misskey:latest
+          volumeMounts:
+            - name: config-file
+              mountPath: /misskey/.config
+              readOnly: true
+          ports:
+            - containerPort: 3000
+        - name: postgres
+          image: postgres:14-alpine
+          env:
+            - name: POSTGRES_USER
+              value: "example-misskey-user"
+            - name: POSTGRES_PASSWORD
+              value: "example-misskey-pass"
+            - name: POSTGRES_DB
+              value: "misskey"
+          ports:
+            - containerPort: 5432
+        - name: redis
+          image: redis:alpine
+          ports:
+            - containerPort: 6379
+      volumes:
+        - name: config-file
+          configMap:
+            name: config-file
