@@ -1,18 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "misskey.fullname" . }}
-  labels:
-		{{- include "misskey.labels" . | nindent 4 }}
+  name: misskey
 spec:
   selector:
     matchLabels:
-			{{- include "misskey.selectorLabels" . | nindent 6 }}
+      app: misskey
   replicas: 1
   template:
     metadata:
       labels:
-				{{- include "misskey.selectorLabels" . | nindent 8 }}
+        app: misskey
     spec:
       containers:
         - name: misskey
@@ -41,4 +39,4 @@ spec:
       volumes:
         - name: config-file
           configMap:
-            name: {{ include "misskey.fullname" . }}-config-file
+            name: config-file
