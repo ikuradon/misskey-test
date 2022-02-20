@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config-file
+  name: {{ include "misskey.fullname" . }}-config-file
 data:
   default.yml: |-
 {{ .Files.Get "files/default.yml"|indent 4 }}
