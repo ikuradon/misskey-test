@@ -1,3 +1,0 @@
-deploy:
-  # - okteto build -t okteto.dev/misskey:latest --build-arg NODE_ENV=development
-  - helm template misskey chart --set url="https://$(kubectl config view --minify -o jsonpath='{..namespace}').cloud.okteto.net"
