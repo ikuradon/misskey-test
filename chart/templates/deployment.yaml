@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: misskey
-          image: okteto.dev/misskey:latest
+          image: {{ .Values.image }}
           volumeMounts:
             - name: {{ include "misskey.fullname" . }}-configuration
               mountPath: /misskey/.config
