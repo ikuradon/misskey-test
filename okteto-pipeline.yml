@@ -2,4 +2,5 @@ deploy:
   # - okteto build -t okteto.dev/misskey:latest --build-arg NODE_ENV=development
   - env
   - okteto context show
+  - kubectl config view --minify -o jsonpath='{..namespace}'
   # - helm upgrade --install misskey chart
