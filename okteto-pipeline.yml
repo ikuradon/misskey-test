@@ -1,3 +1,4 @@
 deploy:
-  - okteto build -t okteto.dev/misskey:latest
-  - helm upgrade --install misskey chart
+  # - okteto build -t okteto.dev/misskey:latest --build-arg NODE_ENV=development
+  - env
+  # - helm upgrade --install misskey chart
