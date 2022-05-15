@@ -4,4 +4,5 @@ metadata:
   name: {{ include "misskey.fullname" . }}-config-file
 data:
   default.yml: |-
-{{ .Files.Get "files/default.yml"|indent 4 }}
+    {{ .Files.Get "files/default.yml"|nindent 4 }}
+    url: {{ .Values.url }}
